@@ -57,16 +57,19 @@ const initModal = () => {
       const modal = document.querySelector(`#${id}`);
       const title = modal.querySelector(".modal__title");
       const close = modal.querySelector(".modal__close");
+      document.body.style.overflow = "hidden";
 
       modal.classList.add("modal--show");
       title.innerText = item.dataset.dialogTitle;
       modal.addEventListener("click", (event) => {
         if (event.target !== event.currentTarget) return;
         modal.classList.remove("modal--show");
+        document.body.style.overflow = "auto";
       });
 
       close.addEventListener("click", () => {
         modal.classList.remove("modal--show");
+        document.body.style.overflow = "auto";
       });
     });
   });
