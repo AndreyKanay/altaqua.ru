@@ -32,8 +32,51 @@ const initSelect = () => {
   });
 };
 
+const initFilter = () => {
+  const header = document.querySelector(".header");
+  const filters = document.querySelector(".filters");
+  const filters__header = document.querySelector(".filters__header");
+  const filters__content = document.querySelector(".filters__content");
+  console.log(header);
+  filters__header.addEventListener("click", () => {
+    if (window.innerWidth > 1220) return;
+    filters__header.classList.toggle("filters__header--active");
+    filters__content.classList.toggle("filters__content--show");
+  });
+
+  window.addEventListener("resize", () => {
+    filters.style.top = `${header.clientHeight}px`;
+  });
+};
+
+const initModal = () => {
+  const buttons = document.querySelectorAll("[data-dialog]");
+  buttons.forEach((item) => {
+    item.addEventListener("click", () => {
+      const id = item.dataset.dialog;
+      const modal = document.querySelector(`#${id}`);
+      const title = modal.querySelector(".modal__title");
+      const close = modal.querySelector(".modal__close");
+
+      modal.classList.add("modal--show");
+      title.innerText = item.dataset.dialogTitle;
+      modal.addEventListener("click", (event) => {
+        if (event.target !== event.currentTarget) return;
+        modal.classList.remove("modal--show");
+      });
+
+      close.addEventListener("click", () => {
+        modal.classList.remove("modal--show");
+      });
+    });
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   initSelect();
+  initFilter();
+  initModal();
+
   const selectivityRange = document.getElementById("selectivity-range");
   const selectivityRangeMin = document.getElementById("selectivity-min");
   const selectivityRangeMax = document.getElementById("selectivity-max");

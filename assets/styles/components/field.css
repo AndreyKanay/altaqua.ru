@@ -1,0 +1,26 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  gap: 5px;
+}
+
+.field__label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.field__input {
+  padding: 10px 15px;
+  outline: none;
+  box-shadow: none;
+  font-size: 16px;
+  border: 1px solid var(--border-color);
+  transition: border-color 0.3s;
+}
+
+.field__input:hover,
+.field__input:focus {
+  border: 1px solid var(--primary-color);
+  transition: border-color 0.3s;
+}

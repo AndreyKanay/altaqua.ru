@@ -1,0 +1,64 @@
+.noUi-horizontal .noUi-handle {
+  width: 16px;
+  height: 16px;
+  top: -4px;
+  background-color: var(--primary-color);
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+}
+
+.noUi-horizontal .noUi-handle-lower {
+  right: -16px;
+}
+
+.noUi-horizontal .noUi-handle-upper {
+  right: 0;
+}
+
+.noUi-handle:after,
+.noUi-handle:before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 14px;
+  width: 1px;
+  background: var(--primary-color);
+  left: 14px;
+  top: 6px;
+}
+
+.noUi-target {
+  background: #fafafa;
+  border-radius: 2px;
+  border: 1px solid var(--border-color);
+  box-shadow: none;
+}
+
+.noUi-horizontal {
+  height: 10px;
+  cursor: pointer;
+}
+
+.noUi-handle:after,
+.noUi-handle:before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 10px;
+  width: 1px;
+  background: #ffffff62;
+  top: 3px;
+}
+
+.noUi-handle:after {
+  left: 9px;
+}
+
+.noUi-handle::before {
+  left: 6px;
+}
+
+.noUi-connect {
+  background-color: #6298b3;
+}
