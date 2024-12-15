@@ -1,0 +1,32 @@
+.checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox input[type="checkbox"]:checked ~ .checkbox__label .checkbox__control {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.checkbox__control {
+  height: 16px;
+  width: 16px;
+  border-radius: 2px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkbox__control::after {
+  display: block;
+  content: "✓";
+  color: #fff;
+}
+
+.checkbox__label {
+  display: flex;
+  gap: 7px;
+  font-size: 14px;
+  cursor: pointer;
+  align-items: center;
+}

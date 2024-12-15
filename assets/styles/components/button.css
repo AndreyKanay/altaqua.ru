@@ -1,0 +1,37 @@
+.button {
+  padding: 10px 20px;
+  border: 1px solid var(--button-border);
+  color: var(--button-color);
+  background-color: var(--button-background);
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  min-height: 46px;
+  transition: background-color 0.2s, color 0.2s;
+  font-weight: 500;
+}
+
+.button:hover {
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.button--primary {
+  --button-background: var(--primary-color);
+  --button-border: var(--primary-color);
+  --button-color: #ffffff;
+}
+
+.button--primary:hover {
+  --button-background: var(--primary-hover-color);
+}
+
+.button--outline {
+  --button-background: transparent;
+  --button-border: var(--primary-color);
+  --button-color: var(--main-text-color);
+}
+
+.button--outline:hover {
+  --button-background: var(--primary-color);
+  --button-color: #ffffff;
+}
