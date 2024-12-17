@@ -33,11 +33,49 @@ const initSelect = () => {
 };
 
 const initFilter = () => {
-  const header = document.querySelector(".header");
   const filters = document.querySelector(".filters");
+  if (!filters) return;
+
+  const header = document.querySelector(".header");
   const filters__header = document.querySelector(".filters__header");
   const filters__content = document.querySelector(".filters__content");
-  console.log(header);
+
+  const selectivityRange = document.getElementById("selectivity-range");
+  const selectivityRangeMin = document.getElementById("selectivity-min");
+  const selectivityRangeMax = document.getElementById("selectivity-max");
+
+  selectivityRangeMin.addEventListener("change", (event) => {
+    console.log(Number(event.target.value), Number(selectivityRangeMax.value));
+
+    selectivityRange.noUiSlider.set([
+      Number(event.target.value),
+      Number(selectivityRangeMax.value),
+    ]);
+  });
+
+  noUiSlider.create(selectivityRange, {
+    start: [89, 99.7], // начальные позиции бегунков
+    connect: true, // закрашивание области между бегунками
+    range: {
+      min: 89,
+      max: 99.7,
+    },
+    step: 0.5, // Шаг бегунков
+    format: {
+      to: function (value) {
+        return value.toFixed(1);
+      },
+      from: function (value) {
+        return Number(value);
+      },
+    },
+  });
+
+  selectivityRange.noUiSlider.on("update", (event) => {
+    selectivityRangeMin.value = event[0];
+    selectivityRangeMax.value = event[1];
+  });
+
   filters__header.addEventListener("click", () => {
     if (window.innerWidth > 1220) return;
     filters__header.classList.toggle("filters__header--active");
@@ -75,45 +113,49 @@ const initModal = () => {
   });
 };
 
+const initTabs = () => {
+  const tabs = document.querySelector(".tabs");
+  if (!tabs) return;
+
+  const buttons = document.querySelectorAll(".tabs__button");
+  const contents = document.querySelectorAll(".tabs__tab");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const tabId = button.dataset.tab;
+      buttons.forEach((i) => i.classList.remove("tabs__button--active"));
+      contents.forEach((i) => i.classList.remove("tabs__tab--current"));
+
+      button.classList.add("tabs__button--active");
+      document.querySelector(`#${tabId}`).classList.add("tabs__tab--current");
+    });
+  });
+};
+
+const initProductGallery = () => {
+  const productThumb = new Swiper(".product-thumb", {
+    loop: true,
+    slidesPerView: 4,
+    spaceBetween: 15,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+  const productGallery = new Swiper(".product-gallery", {
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    thumbs: {
+      swiper: productThumb,
+    },
+  });
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   initSelect();
   initFilter();
   initModal();
-
-  const selectivityRange = document.getElementById("selectivity-range");
-  const selectivityRangeMin = document.getElementById("selectivity-min");
-  const selectivityRangeMax = document.getElementById("selectivity-max");
-
-  selectivityRangeMin.addEventListener("change", (event) => {
-    console.log(Number(event.target.value), Number(selectivityRangeMax.value));
-
-    selectivityRange.noUiSlider.set([
-      Number(event.target.value),
-      Number(selectivityRangeMax.value),
-    ]);
-  });
-
-  noUiSlider.create(selectivityRange, {
-    start: [89, 99.7], // начальные позиции бегунков
-    connect: true, // закрашивание области между бегунками
-    range: {
-      min: 89,
-      max: 99.7,
-    },
-    step: 0.5, // Шаг бегунков
-    // tooltips: [true, true],
-    format: {
-      to: function (value) {
-        return value.toFixed(1);
-      },
-      from: function (value) {
-        return Number(value);
-      },
-    },
-  });
-
-  selectivityRange.noUiSlider.on("update", (event) => {
-    selectivityRangeMin.value = event[0];
-    selectivityRangeMax.value = event[1];
-  });
+  initTabs();
+  initProductGallery();
 });

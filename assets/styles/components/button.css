@@ -9,6 +9,7 @@
   min-height: 46px;
   transition: background-color 0.2s, color 0.2s;
   font-weight: 500;
+  width: auto;
 }
 
 .button:hover {
@@ -34,4 +35,12 @@
 .button--outline:hover {
   --button-background: var(--primary-color);
   --button-color: #ffffff;
+}
+
+.button--full {
+  width: 100%;
+}
+
+.product--big {
+  padding: 10px 30px;
 }

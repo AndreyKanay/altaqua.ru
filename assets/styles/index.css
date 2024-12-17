@@ -12,6 +12,9 @@
 @import "./components/pagination.css";
 @import "./components/modal.css";
 @import "./components/field.css";
+@import "./components/product.css";
+@import "./components/characteristic.css";
+@import "./components/tabs.css";
 
 :root {
   --primary-color: #37667e;

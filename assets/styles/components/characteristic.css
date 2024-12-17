@@ -1,0 +1,42 @@
+.characteristic {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--characteristic-padding, 0);
+}
+
+.characteristic--table {
+  --characteristic-padding: 15px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.characteristic--table:last-child {
+  border: none;
+}
+
+.characteristic__title,
+.characteristic__value {
+  font-size: 16px;
+  margin: 0;
+}
+
+.characteristic__title {
+  font-weight: 500;
+}
+
+.characteristic__title--header,
+.characteristic__value--header {
+  font-weight: 700;
+}
+
+.characteristic__title--underline {
+  text-decoration: underline;
+}
+
+a.characteristic__value {
+  color: var(--primary-color);
+}
+
+a.characteristic__value:hover {
+  color: var(--primary-hover-color);
+}
